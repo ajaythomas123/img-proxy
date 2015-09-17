@@ -1,0 +1,58 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<dom-module id="img-proxy">
+  <template>
+    <img src="{{proxySrc}}" width$="{{width}}" height$="{{height}}"/>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is:'img-proxy',
+    properties:{
+      src: String,
+      width: {
+        type: String,
+        value: ''
+      },
+      height: {
+        type: String,
+        value: ''
+      },
+      quality: {
+        type: Number,
+        value: 95
+      },
+      sizing: {
+        type: String,
+        value: ''
+      },
+      position: {
+        type: String,
+        value: ''
+      },
+      proxySrc: {
+        type: String,
+        computed: 'computeSrc(src, width, height, quality, sizing)'
+      }
+    },
+
+    computeSrc: function(src, width, height, quality, sizing) {
+      var proxyUrl = 'https://images.weserv.nl/?url=';
+      var splitSrc = src.split(/:\/\//);
+      if(sizing === '' && width !== '' && height !== '') {
+        sizing = 'absolute';
+      }
+      var proxyParams = splitSrc[1]
+        + '&w=' + width.replace(/\D/g, '')
+        + '&h=' + height.replace(/\D/g, '')
+        + '&q=' + quality
+        + '&t=' + sizing;
+      if (splitSrc[0] === 'https') {
+        proxyUrl = proxyUrl + 'ssl:' + proxyParams;
+      }
+      else {
+        proxyUrl = proxyUrl + proxyParams;
+      }
+      return proxyUrl;
+    }
+  })
+</script>

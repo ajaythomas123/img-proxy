@@ -1,0 +1,28 @@
+{
+  "name": "img-proxy",
+  "version": "0.0.1",
+  "authors": [
+    "<Ajay Thomas <@ajaytmas>>"
+  ],
+  "description": "Custom polymer element to load images using a proxy.",
+  "main": "img-proxy.html",
+  "keywords": [
+    "polymer",
+    "image",
+    "proxy",
+    "resize",
+    "webcomponents",
+    "compression"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "polymer": "Polymer/polymer#~1.1.3"
+  }
+}
